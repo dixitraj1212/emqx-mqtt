@@ -1,0 +1,14 @@
+version: '3.3'
+networks:
+  mqtt:
+    external: true
+services:
+  telegraf:
+    networks:
+      - mqtt
+    image: telegraf:latest
+    volumes:
+      # Mount for telegraf config
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    env_file:
+      - influxv2.env

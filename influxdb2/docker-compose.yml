@@ -1,0 +1,19 @@
+version: '3.3'
+networks:
+  mqtt:
+    external: true
+services:
+  influxdb:
+    networks:
+      - mqtt
+    container_name: influxdb
+    volumes:
+      - '/home/ubuntu/app/influxdb2:/var/lib/influxdb2'
+    image: 'influxdb:2.7.0'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.influxdb.rule=Host(`influxdb.mqtt.maulik.tech`)"
+      - "traefik.http.routers.influxdb.entrypoints=websecure"
+      - "traefik.http.routers.influxdb.tls.certresolver=letsencrypt"
+    env_file:
+      - influxv2.env
