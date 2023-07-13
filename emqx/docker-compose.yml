@@ -23,7 +23,7 @@ services:
       - EMQX_LOG__CONSOLE_HANDLER__LEVEL=error
     volumes:
       - /home/ubuntu/app/emqx/data:/opt/emqx/data
-      - /home/ubuntu/mqtt/traefik/certs/certs:/certs
+      - /home/ubuntu/emqx-mqtt/traefik/certs/certs:/certs
       - ./emqx.conf:/opt/emqx/etc/emqx.conf
       - /home/ubuntu/app/emqx/log:/opt/emqx/log
     labels:
